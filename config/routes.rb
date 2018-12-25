@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :private do 
+  namespace :private do
     resources :conversations, only: [:create] do
       member do
         post :close
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:index, :create]
   end
 
-  namespace :group do 
+  namespace :group do
     resources :conversations do
       member do
         post :close
@@ -44,5 +44,7 @@ Rails.application.routes.draw do
   end
 
   resources :contacts, only: [:create, :update, :destroy]
+
+  mount ActionCable.server => '/cable'
 
 end
